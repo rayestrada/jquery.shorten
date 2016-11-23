@@ -16,18 +16,13 @@
 ** I've also added brackets where they weren't added just for readability (mostly for me).
 */
 
-(function(factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD
-    define(['jquery'], factory);
-  } else if (typeof exports === 'object') {
-    // CommonJS
-    module.exports = factory(require('jquery'));
+(function (factory) {
+  if(typeof module === "object" && typeof module.exports === "object") {
+    factory(require("jquery"), window, document);
   } else {
-    // Browser globals
-    factory(jQuery);
+    factory(jQuery, window, document);
   }
-}(function($) {
+}(function($, window, document, undefined) {
     $.fn.shorten = function(settings) {
         "use strict";
 
@@ -127,12 +122,10 @@
 
                         if (inTag) {
                           bag += content.charAt(i);
-                          console.log('intag ' + bag);
                         } // Add tag name chars to the result
                         else {
                             if (countChars <= newShowChars) {
                                 bag += content.charAt(i); // Fix to ie 7 not allowing you to reference string characters using the []
-                              console.log('outtag ' + bag);
                                 countChars++;
                             } else // Now I have the characters needed
                             {
@@ -168,4 +161,5 @@
         });
 
     };
-})(jQuery));
+(jQuery)
+}));

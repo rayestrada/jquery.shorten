@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/rayestrada/jquery.shorten/issues"
   },
-  "homepage": "https://github.com/rayestrada/jquery.shorten#readme"
+  "homepage": "https://github.com/rayestrada/jquery.shorten#readme",
+  "dependencies": {
+    "jquery": "^1.12.4"
+  }
 }
