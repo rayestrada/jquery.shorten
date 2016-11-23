@@ -39,9 +39,10 @@
         if ($(this).data('jquery.shorten') && !config.force) {
             return false;
         }
+
         $(this).data('jquery.shorten', true);
 
-        $(document).off("click", '.morelink');
+        $(document).off('click', '.morelink');
 
         $(document).on({
             click: function() {
@@ -50,14 +51,16 @@
                 if ($this.hasClass('less')) {
                     $this.removeClass('less');
                     $this.html(config.moreText);
-                    $this.parent().prev().animate({'height':'0'+'%'}, function () { $this.parent().prev().prev().show(); }).hide('fast', function() {
+                    $this.parent().prev().prev().show();
+                    $this.parent().prev().hide(0, function() {
                         config.onLess();
                       });
 
                 } else {
                     $this.addClass('less');
                     $this.html(config.lessText);
-                    $this.parent().prev().animate({'height':'100'+'%'}, function () { $this.parent().prev().prev().hide(); }).show('fast', function() {
+                    $this.parent().prev().prev().hide();
+                    $this.parent().prev().show(0, function() {
                         config.onMore();
                       });
                 }
@@ -68,10 +71,13 @@
         return this.each(function() {
             var $this = $(this);
 
-            var content = $this.html();
-            var contentlen = $this.text().length;
-            if (contentlen > config.showChars + config.minHideChars) {
-                var c = content.substr(0, config.showChars);
+            var content = $this.html().trim();
+            var contentlen = content.length;
+            var nextSpaceIndex = content.substr(config.showChars, contentlen - config.showChars).indexOf(' '); // Index of the first space in the text to hide
+            var newShowChars = config.showChars + nextSpaceIndex;
+
+            if (contentlen > newShowChars + config.minHideChars) {
+                var c = content.substr(0, newShowChars);
                 if (c.indexOf('<') >= 0) // If there's HTML don't want to cut it
                 {
                     var inTag = false; // I'm in a tag?
@@ -80,7 +86,7 @@
                     var openTags = []; // Stack for opened tags, so I can close them later
                     var tagName = null;
 
-                    for (var i = 0, r = 0; r <= config.showChars; i++) {
+                    for (var i = 0, r = 0; r <= newShowChars; i++) {
                         if (content[i] == '<' && !inTag) {
                             inTag = true;
 
@@ -108,11 +114,14 @@
                             inTag = false;
                         }
 
-                        if (inTag) { bag += content.charAt(i); } // Add tag name chars to the result
+                        if (inTag) {
+                          bag += content.charAt(i);
+                          console.log('intag ' + bag);
+                        } // Add tag name chars to the result
                         else {
-                            r++;
-                            if (countChars <= config.showChars) {
+                            if (countChars <= newShowChars) {
                                 bag += content.charAt(i); // Fix to ie 7 not allowing you to reference string characters using the []
+                              console.log('outtag ' + bag);
                                 countChars++;
                             } else // Now I have the characters needed
                             {
@@ -130,6 +139,7 @@
                                 }
                             }
                         }
+                      r++;
                     }
                     c = $('<div/>').html(bag + '<span class="ellip">' + config.ellipsesText + '</span>').html();
                 }else{
@@ -142,7 +152,7 @@
 
                 $this.html(html);
                 $this.find(".allcontent").hide(); // Hide all text
-                $('.shortcontent p:last', $this).css('margin-bottom', 0); //Remove bottom margin on last paragraph as it's likely shortened
+                $('.shortcontent > *:last', $this).css('margin-bottom', 0); //Remove bottom margin on last paragraph as it's likely shortened
             }
         });
 

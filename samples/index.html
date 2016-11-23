@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<HTML>
-<HEAD>
+<html>
+<head>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" src="../src/jquery.shorten.js"></script>
 	
-	<TITLE>Dynamically shortened Text with Show More link using jQuery</TITLE>
-	<style>body {font-family: Calibri} div { width: 400px; margin:20px; padding:10px;}</style>
-</HEAD>
-<BODY>
+	<title>Dynamically shortened Text with Show More link using jQuery</title>
+	<style>
+    body {
+      font-family: Calibri
+    }
+    div.comment,
+    div.comment-small,
+    div.comment-animation {
+      width: 400px;
+      margin:20px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="comment">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dolorum ducimus explicabo facilis, fugiat, id in ipsa itaque laboriosam libero magni maiores natus nesciunt nihil nisi odit qui recusandae sequi tempore tenetur veritatis voluptas! Ad adipisci alias aliquam aperiam atque blanditiis consectetur cumque deleniti dicta earum error eum ex, excepturi expedita facere impedit iusto labore maxime nemo nobis numquam officia perspiciatis placeat possimus praesentium quae quia quidem quos repudiandae saepe sunt unde velit voluptatum. Beatae consequuntur ea eveniet ex. Debitis distinctio earum error eveniet fugit, id incidunt laudantium nesciunt omnis, provident quia quis tenetur? Illum laboriosam modi odit officia.</p>
+</div>
 
-<br/>
 <div class="comment">
 Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit. Vestibulum laoreet, <i>nunc eget laoreet sagittis, quam ligula</i></strong> sodales orci, congue imperdiet eros tortor ac lectus. Duis eget nisl orci. Aliquam mattis purus non mauris blandit id luctus felis convallis. Integer varius egestas vestibulum. Nullam a dolor arcu, ac tempor elit. Donec.
 </div>
@@ -24,11 +36,9 @@ consectetur adipiscing elit. Proin blandit nunc sed sem dictum id feugiat quam b
 <div class="comment"><br>Duisds nisl nibh, egestas at fermentum at, viverra et purus. Maecenas lobortis odio id sapien facilisis elementum.  <img alt="chicken" src="http://img.smileys.nl/466/chicken.gif">Curabitur et magna justo, et gravida augue. Sed tristique pellentesque arcu quis tempor.
 </div>
 
-
 <div class="comment-small">
 A quick brown fox jumps over a lazy dog
 </div>
-
 
 <div class="comment-small">
 <a href="http://foo/bar/someverylongtextwithfoofoofoofoo">foo</a> bar
@@ -43,5 +53,5 @@ $(document).ready(function() {
 
  });
 </script>
-</BODY>
-</HTML>
+</body>
+</html>
