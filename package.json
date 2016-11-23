@@ -1,0 +1,19 @@
+{
+  "name": "jquery-shorten-plus",
+  "version": "1.0.0",
+  "description": "A simple jquery plugin that automatically shortens text within an element and add \"more\" link.",
+  "main": "src/jquery.shorten.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayestrada/jquery.shorten.git"
+  },
+  "author": " (https://github.com/viralpatel)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rayestrada/jquery.shorten/issues"
+  },
+  "homepage": "https://github.com/rayestrada/jquery.shorten#readme"
+}

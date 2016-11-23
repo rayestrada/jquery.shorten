@@ -16,7 +16,18 @@
 ** I've also added brackets where they weren't added just for readability (mostly for me).
 */
 
-(function($) {
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // CommonJS
+    module.exports = factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function($) {
     $.fn.shorten = function(settings) {
         "use strict";
 
@@ -157,5 +168,4 @@
         });
 
     };
-
-})(jQuery);
+})(jQuery));
