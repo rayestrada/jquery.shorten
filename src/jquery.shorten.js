@@ -131,13 +131,8 @@
               {
                 if (openTags.length > 0) // I have unclosed tags
                 {
-                  //console.log('They were open tags');
-                  //console.log(openTags);
                   for (j = 0; j < openTags.length; j++) {
-                    //console.log('Cierro tag ' + openTags[j]);
                     bag += '</' + openTags[j] + '>'; // Close all tags that were opened
-
-                    // You could shift the tag from the stack to check if you end with an empty stack, that means you have closed all open tags
                   }
                   break;
                 }
@@ -161,5 +156,4 @@
     });
 
   };
-  (jQuery)
-}));
+})(jQuery));
